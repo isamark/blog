@@ -1,0 +1,4 @@
+
+# 调试模式
+DEBUG = True
+ZHANGWUQIANG = 999
