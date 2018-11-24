@@ -9,7 +9,7 @@ from WebApp.models.base import db
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object('configs')
+    app.config.from_object('WebApp.configs')
     app.config.from_pyfile('./config.cfg', silent=True)
     register_blueprint(app)
     db.init_app(app)
@@ -17,5 +17,5 @@ def create_app():
     return app
 
 def register_blueprint(app):
-    from web import web
+    from WebApp.web import web
     app.register_blueprint(web)
