@@ -9,7 +9,7 @@ from WebApp.models.user import User
 from WebApp.models.article import Article
 from WebApp.models.comment import Comment
 from flask import render_template, request
-from ext import db
+# from ext import db
 
 @web.route('/article_list')
 def get_article_list():
