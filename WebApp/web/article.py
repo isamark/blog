@@ -9,7 +9,7 @@ from WebApp.models.user import User
 from WebApp.models.article import Article
 from WebApp.models.comment import Comment
 from WebApp.models.category import Category
-from flask import render_template
+from flask import render_template, request
 
 
 @web.route('/article_list')
