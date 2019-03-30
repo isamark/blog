@@ -20,7 +20,6 @@ class User(Base):
     email = Column(String(50), unique=True, nullable=False, doc='电子邮件')
     wx_open_id = Column(String(50), nullable=False, default='', doc='用户open_id')
     wx_nickname = Column(String(32), nullable=False, default='', doc='用户昵称')
-    comment = relationship('Comment', back_populates="user")
 
 
     @property

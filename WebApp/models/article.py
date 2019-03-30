@@ -13,8 +13,6 @@ class Article(Base):
     id = Column(Integer, primary_key=True, autoincrement=True, doc='自增长ID')
     title = Column(String(50), nullable=False, default='a', doc='文章标题')
     content = Column(Text, nullable=False, default='b', doc='文章内容')
-    autor = Column(String(50), nullable=False, default='c', doc='作者')
     create_address = Column(String(32), nullable=False, default='d', doc='创作地址')
 
-    category = relationship('Category', back_populates="article")
-
+    comment = relationship('Comment', back_populates="article")

@@ -15,7 +15,10 @@ class Comment(Base):
     __tablename__ = 'comment'
 
     id = Column(Integer, primary_key=True, autoincrement=True, doc='自增长ID')
-    uid = Column(Integer, ForeignKey('user.id'), doc='用户id')
+    # uid = Column(Integer, ForeignKey('user.id'), doc='用户id')
     content = Column(String(1024), nullable=False, default='', doc='评论内容')
 
-    user = relationship('User', back_populates="comment")
+    # user = relationship('User', back_populates="comment")
+
+    a_id = Column(Integer, ForeignKey('article.id'), doc='文章ID')
+    article = relationship('Article', back_populates="comment")
