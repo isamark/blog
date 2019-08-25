@@ -4,7 +4,7 @@
 # Date: 2018/10/28
 
 
-from tornado.web import authenticated
+# from tornado.web import authenticated
 
 
 from . import web
