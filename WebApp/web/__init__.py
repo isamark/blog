@@ -9,3 +9,5 @@ from flask import Blueprint
 web = Blueprint('web', __package__)
 
 from WebApp.web import article
+from WebApp.web import markdown
+

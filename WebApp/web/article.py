@@ -15,7 +15,7 @@ from flask import render_template, request
 # from ext import db
 # from ext import db
 
-@web.route('/article_list')
+@web.route('/')
 def get_article_list():
 
     query = Article.query.filter().order_by(Article.id.desc()).limit(6).all()

@@ -5,11 +5,23 @@
 
 
 import datetime
-from flask_sqlalchemy import SQLAlchemy
+from contextlib import contextmanager
+
+from flask_sqlalchemy import SQLAlchemy as _SQLAlchemy
 from sqlalchemy import Column, Integer, SmallInteger, String, Text
 
 
-db = SQLAlchemy()
+class SQLAlchemy(_SQLAlchemy):
+    @contextmanager
+    def auto_commit(self):
+        try:
+            yield
+            self.session.commit()
+        except Exception as e:
+            self.session.rollback()
+            raise e
+
+db=SQLAlchemy()
 
 
 class Base(db.Model):
@@ -19,7 +31,6 @@ class Base(db.Model):
     status = Column(SmallInteger, default=1)
 
     def __init__(self):
-        self.create_time = int(datetime.now().timestamp())
-
+        self.create_time = int(datetime.datetime.now().timestamp())
 
 

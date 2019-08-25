@@ -2,3 +2,4 @@
 # 调试模式
 DEBUG = True
 ZHANGWUQIANG = 999
+WTF_CSRF_ENABLED = False

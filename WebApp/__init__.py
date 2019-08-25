@@ -3,10 +3,10 @@
 # __author__ = "Q1mi"
 # Date: 2018/10/28
 
+
 from flask import Flask
 from WebApp.models.base import db
-
-
+from flaskext.markdown import Markdown
 def create_app():
     app = Flask(__name__)
     app.config.from_object('WebApp.configs')
@@ -14,6 +14,12 @@ def create_app():
     register_blueprint(app)
     db.init_app(app)
     db.create_all(app=app)
+    Markdown(app)
+
+
+
+
+
     return app
 
 def register_blueprint(app):
