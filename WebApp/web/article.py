@@ -5,7 +5,7 @@
 
 
 # from tornado.web import authenticated
-
+from sqlalchemy import desc
 
 from . import web
 from WebApp.models.user import User
@@ -18,6 +18,6 @@ from flask import render_template, request
 @web.route('/')
 def get_article_list():
 
-    query = Article.query.filter().order_by(Article.id.desc()).limit(6).all()
+    p = Article.query.filter().order_by(desc(Article.id)).first()
 
-    return render_template('index.html')
+    return render_template('index.html', post=p)

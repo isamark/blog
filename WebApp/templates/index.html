@@ -147,9 +147,11 @@
 							<article>
 								<div class="art-header">
 									<div class="entry-title">
-										<a href="#">Post Format: Gallery</a>
+										<a href="#">{{ post.title|markdown|safe }}</a>
 									</div>
-									<span>Posted on November 12, 2015</span>
+									<span>{{ post.create_address|markdown|safe }}</span>
+
+									<span>{{ post.autor|markdown|safe }}</span>
 								</div>
 								<div class="art-content">
 									<div class="zoom-container">
@@ -157,7 +159,8 @@
 											<img src="../static/images/4.jpg" />
 										</a>
 									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt, sapien nec aliquam viverra, libero elit euismod turpis, vel sollicitudin nisi eros eget tortor.</p>
+									<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt, sapien nec aliquam viverra, libero elit euismod turpis, vel sollicitudin nisi eros eget tortor.</p>-->
+									<p>{{ post.content|markdown|safe }}</p>
 									<div class="t-center"><a class="button button02" href="#">Read More</a></div>
 								</div>
 							</article>
