@@ -25,10 +25,28 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <script src="../static/js/jquery183.min.js"></script>
     <script src="../static/js/responsiveslides.min.js"></script>
+
+	<!--content样式-->
+	<link rel="stylesheet" href="/static/editormd/css/editormd.preview.css" />
+	<script src="/static/editormd/examples/js/jquery.min.js"></script>
+	<script src="/static/editormd/editormd.js"></script>
+	<script src="/static/editormd/lib/marked.min.js"></script>
+	<script src="/static/editormd/lib/prettify.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var testView = editormd.markdownToHTML("test-markdown-view", {
+				// markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+				// htmlDecode : true,  // Enable / disable HTML tag encode.
+				// htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+			});
+		});
+	</script>
+	<!--end-->
+
     <script>
 		// You can also use "$(window).load(function() {"
 		$(function () {
-		  // Slideshow 
+		  // Slideshow
 		  $("#slider").responsiveSlides({
 			auto: true,
 			pager: false,
@@ -160,7 +178,10 @@
 										</a>
 									</div>
 									<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt, sapien nec aliquam viverra, libero elit euismod turpis, vel sollicitudin nisi eros eget tortor.</p>-->
-									<p>{{ post.content|markdown|safe }}</p>
+									<div id="test-markdown-view">
+										<!-- Server-side output Markdown text -->
+										<textarea style="display:none;">{{ post.content|safe }}</textarea>
+									</div>
 									<div class="t-center"><a class="button button02" href="#">Read More</a></div>
 								</div>
 							</article>
