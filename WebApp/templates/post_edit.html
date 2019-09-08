@@ -13,7 +13,7 @@
     <div class="page-header">
 		<h1 class="text-center">SOUL</h1>
 
-		<form action="" method="post">
+		<form action="{{ url_for('.edit_post',id=post.id,origin='1') }}" method="post">
 			{{ form.hidden_tag() }}
 			<!-- 标题&发布 -->
 			<div class="col-lg-12">

@@ -5,14 +5,18 @@
 import datetime
 
 import logging
+
+from sqlalchemy import desc
+
 from . import web
 from WebApp.forms import ArticleForm
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, request
 from WebApp.models.article import Article
 
 
-@web.route('/test1', methods=['GET', 'POST'])
-def test_1():
+
+@web.route('/edit_post/<int:id>', methods=['GET', 'POST'])
+def edit_post(id):
     mkd = '''
     # header
     ## header2
@@ -23,15 +27,30 @@ def test_1():
     **bold**
     '''
     form = ArticleForm()
+    a = {}
+    if id and not request.args.get('origin'):
+        p = Article.query.filter(Article.id == id).order_by(desc(Article.id)).first()
+
+        form.title.data = p.title
+        form.autor.data = p.autor
+        form.create_address.data = p.create_address
+        form.content.data = p.content
+        a.update({"id": p.id})
+
+    else:
+        a.update({"id": 0})
 
     if form.validate_on_submit():
         # 文章内容以markdown的格式存储，需要显示页面时可通过markdown模块解析后显示。如
         # print(markdown.markdown(form.content.data))
         article = Article()
-        print("$$$" * 100)
-        logging.info(form.title.data)
-        logging.info("test_1执行")
-        article.save_to_article(title=form.title.data, content=form.content.data, create_address=form.create_address.data, autor=form.autor.data)
+        if not id:
+            print("$$$" * 100)
+            logging.info(form.title.data)
+            logging.info("test_1执行")
+            article.save_to_article(title=form.title.data, content=form.content.data, create_address=form.create_address.data, autor=form.autor.data)
+        else:
+            article.update_article(id=id, title=form.title.data, content=form.content.data, create_address=form.create_address.data, autor=form.autor.data)
 
         return redirect(url_for('web.get_article_list'))
-    return render_template('post_edit.html', form=form)
+    return render_template('post_edit.html', form=form, post=a)

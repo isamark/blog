@@ -26,7 +26,11 @@ class Article(Base):
         with db.auto_commit():
             self.title = title
             self.content = content
-            self.requester_name = create_address
-            self.create_address = autor
+            self.create_address = create_address
+            self.autor = autor
             self.status = status
             db.session.add(self)
+
+    def update_article(self, id, title, content, create_address, autor):
+        Article.query.filter(Article.id == id).update({'title': title, 'content': content, 'create_address': create_address, 'autor': autor})
+        db.session.commit()
