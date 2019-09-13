@@ -35,6 +35,8 @@ def edit_post(id):
         form.autor.data = p.autor
         form.create_address.data = p.create_address
         form.content.data = p.content
+        form.profile.data = p.profile
+        form.pic.data = p.pic
         a.update({"id": p.id})
 
     else:
@@ -48,9 +50,9 @@ def edit_post(id):
             print("$$$" * 100)
             logging.info(form.title.data)
             logging.info("test_1执行")
-            article.save_to_article(title=form.title.data, content=form.content.data, create_address=form.create_address.data, autor=form.autor.data)
+            article.save_to_article(title=form.title.data, content=form.content.data, create_address=form.create_address.data, autor=form.autor.data, profile=form.profile.data, pic=form.pic.data)
         else:
-            article.update_article(id=id, title=form.title.data, content=form.content.data, create_address=form.create_address.data, autor=form.autor.data)
+            article.update_article(id=id, title=form.title.data, content=form.content.data, create_address=form.create_address.data, autor=form.autor.data, profile=form.profile.data, pic=form.pic.data)
 
         return redirect(url_for('web.get_article_list'))
     return render_template('post_edit.html', form=form, post=a)

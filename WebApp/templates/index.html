@@ -85,41 +85,41 @@
 		<div class="zerogrid">
 			<nav id="menu-wrap"><div id="menu-trigger">Menu</div>    
 				<ul id="menu" style="display: none;">
-					<li><a href="index.html">Home</a></li>
-					<li>
-						<a href="#">Categories</a>
-						<ul>
-							<li>
-								<a href="#">Item 01</a>
-							</li>
-							<li>
-								<a href="#">Item 02</a>
-							</li>
-							<li>
-								<a href="#">Item 03</a>
-								<ul>
-									<li><a href="#">Item 31</a></li>
-									<li><a href="#">Item 32</a></li>
-								</ul>				
-							</li>
-							<li>
-								<a href="#">Item 04</a>				
-								<ul>
-									<li><a href="#">Item 41</a></li>
-									<li><a href="#">Item 42</a></li>
-									<li><a href="#">Item 43</a></li>
-									<li><a href="#">Item 44</a></li>
-								</ul>	
-							</li>
-						</ul>
-					</li>
-					<li><a href="single.html">About</a></li>
-					<li><a href="contact.html">Contact</a></li>
-					<li style="float:right !important">
-						<form method="get" action="/search" id="search" class="f-right">
-							<input name="q" type="text" size="40" placeholder="Search..." />
-						</form>
-					</li>
+					<li><a href="/">Home</a></li>
+					<!--<li>-->
+						<!--<a href="#">Categories</a>-->
+						<!--<ul>-->
+							<!--<li>-->
+								<!--<a href="#">Item 01</a>-->
+							<!--</li>-->
+							<!--<li>-->
+								<!--<a href="#">Item 02</a>-->
+							<!--</li>-->
+							<!--<li>-->
+								<!--<a href="#">Item 03</a>-->
+								<!--<ul>-->
+									<!--<li><a href="#">Item 31</a></li>-->
+									<!--<li><a href="#">Item 32</a></li>-->
+								<!--</ul>				-->
+							<!--</li>-->
+							<!--<li>-->
+								<!--<a href="#">Item 04</a>				-->
+								<!--<ul>-->
+									<!--<li><a href="#">Item 41</a></li>-->
+									<!--<li><a href="#">Item 42</a></li>-->
+									<!--<li><a href="#">Item 43</a></li>-->
+									<!--<li><a href="#">Item 44</a></li>-->
+								<!--</ul>	-->
+							<!--</li>-->
+						<!--</ul>-->
+					<!--</li>-->
+					<!--<li><a href="single.html">About</a></li>-->
+					<!--<li><a href="contact.html">Contact</a></li>-->
+					<!--<li style="float:right !important">-->
+						<!--<form method="get" action="/search" id="search" class="f-right">-->
+							<!--<input name="q" type="text" size="40" placeholder="Search..." />-->
+						<!--</form>-->
+					<!--</li>-->
 				</ul>
 			</nav>
 		</div>
@@ -130,7 +130,7 @@
 				<div class="col-full t-center">
 					<div class="wrap-col">
 						<div class="logo"><a href="#"><img src="../static/images/logo.png"/></a></div>
-						<div class="tagline">Temporibus autem quibusdam et aut officiis</div>
+						<!--<div class="tagline">Temporibus autem quibusdam et aut officiis</div>-->
 					</div>
 				</div>
 			</div>
@@ -161,6 +161,7 @@
 			<div class="row">
 				<div id="main-content" class="col-2-3">
 					<div class="wrap-content">
+						{% for post in posts %}
 						<div class="row">
 							<article>
 								<div class="art-header">
@@ -173,38 +174,40 @@
 								</div>
 								<div class="art-content">
 									<div class="zoom-container">
-										<a href="single.html">
-											<img src="../static/images/4.jpg" />
+										<a href="detail?id={{ post.id }}">
+											<!--<img src="../static/images/4.jpg" />-->
+											<img src="{{ post.pic }}" alt="nsddBT.jpg" border="0" />
 										</a>
 									</div>
 									<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt, sapien nec aliquam viverra, libero elit euismod turpis, vel sollicitudin nisi eros eget tortor.</p>-->
-									<div id="test-markdown-view">
+									<div>
 										<!-- Server-side output Markdown text -->
-										<textarea style="display:none;">{{ post.content|safe }}</textarea>
+										<p>{{ post.profile|safe }}</p>
 									</div>
-									<div class="t-center"><a class="button button02" href="#">Read More</a></div>
+									<div class="t-center"><a class="button button02" href="detail?id={{ post.id }}"" id="read_more">Read More</a></div>
 								</div>
 							</article>
 						</div>
-						<div class="row">
-							<article>
-								<div class="art-header">
-									<div class="entry-title">
-										<a href="#">Template: Featured Image (No Sidebar Layout)</a>
-									</div>
-									<span>Posted on November 12, 2015</span>
-								</div>
-								<div class="art-content">
-									<div class="zoom-container">
-										<a href="single.html">
-											<img src="../static/images/5.jpg" />
-										</a>
-									</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt, sapien nec aliquam viverra, libero elit euismod turpis, vel sollicitudin nisi eros eget tortor.</p>
-									<div class="t-center"><a class="button button02" href="#">Read More</a></div>
-								</div>
-							</article>
-						</div>
+						{% endfor %}
+						<!--<div class="row">-->
+							<!--<article>-->
+								<!--<div class="art-header">-->
+									<!--<div class="entry-title">-->
+										<!--<a href="#">Template: Featured Image (No Sidebar Layout)</a>-->
+									<!--</div>-->
+									<!--<span>Posted on November 12, 2015</span>-->
+								<!--</div>-->
+								<!--<div class="art-content">-->
+									<!--<div class="zoom-container">-->
+										<!--<a href="single.html">-->
+											<!--<img src="../static/images/5.jpg" />-->
+										<!--</a>-->
+									<!--</div>-->
+									<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt, sapien nec aliquam viverra, libero elit euismod turpis, vel sollicitudin nisi eros eget tortor.</p>-->
+									<!--<div class="t-center"><a class="button button02" href="#">Read More</a></div>-->
+								<!--</div>-->
+							<!--</article>-->
+						<!--</div>-->
 						<!--<div class="row">-->
 							<!--<div class="col-1-2">-->
 								<!--<div class="wrap-col">-->
@@ -298,7 +301,7 @@
 						</div>
 						<div class="wid-content">
 							<img src="../static/images/10.jpg" />
-							<p>My name is Activello and I am an awesome WordPress blog theme for photography, food, travel and other blogs. I was created by colorlib.</p>
+							<p>My name is Hannibal.</p>
 						</div>
 					</div>
 					<!---- Start Widget ---->
